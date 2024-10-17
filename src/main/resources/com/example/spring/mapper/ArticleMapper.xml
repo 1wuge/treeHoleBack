@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="com.example.spring.mapper.ArticleMapper">
+
+
+    <insert id="addArticle">
+        insert into article(account, title, content, time,theme,picturePath) values(#{account},#{title},#{content},#{time},#{theme},#{picturePath})
+    </insert>
+    <select id="getNum" resultType="com.example.spring.entity.Article">
+        select * from article where 1=1 <if test="time>=0"> and to_days(now())-to_days(time)&lt;=#{time}</if>
+        <if test="theme!=0"> and theme=#{theme}</if>;
+    </select>
+    <select id="getArticleAll" resultType="com.example.spring.entity.Article">
+        select * from article limit #{page},#{size};
+    </select>
+    <select id="getArticle" resultType="com.example.spring.entity.Article">
+        select * from article where tid=#{tid};
+    </select>
+    <select id="getComments" resultType="com.example.spring.entity.Comments">
+        select * from comments where tid=#{tid};
+    </select>
+    <select id="getArticleByFilter" resultType="com.example.spring.entity.Article">
+        select * from article where 1=1 <if test="time>=0"> and to_days(now())-to_days(time)&lt;=#{time}</if>
+        <if test="theme!=0"> and theme=#{theme}</if><if test="sort==1||sort==0"> order by tid desc </if>limit #{page},#{size};
+        ;
+    </select>
+    <insert id="insertComment">
+        insert into comments(account, tid,  comment, ctime) values(#{account},#{tid},#{comment},#{ctime})
+    </insert>
+
+</mapper>

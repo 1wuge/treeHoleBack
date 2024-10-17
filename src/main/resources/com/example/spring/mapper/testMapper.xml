@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="com.example.spring.mapper.testMapper">
+
+
+    <insert id="addArticle">
+        insert into article(account, title, content, time) values(#{account},#{title},#{content},#{time})
+    </insert>
+    <select id="getNum" resultType="com.example.spring.entity.Article">
+        select * from article;
+    </select>
+    <select id="getArticleAll" resultType="com.example.spring.entity.Article">
+        select * from article limit #{page},#{size};
+    </select>
+    <select id="getArticle" resultType="com.example.spring.entity.Article">
+        select * from article where tid=#{tid};
+    </select>
+    <select id="getComments" resultType="com.example.spring.entity.Comments">
+        select * from comments where tid=#{tid};
+    </select>
+    <insert id="insertComment">
+        insert into comments(account, tid,  comment, ctime) values(#{account},#{tid},#{comment},#{ctime})
+    </insert>
+
+</mapper>
