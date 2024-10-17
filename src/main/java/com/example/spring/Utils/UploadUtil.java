@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class UploadUtil {
     //阿里域名
-    public static final String AIL_DOMAIN="https://treeholess.oss-cn-shanghai.aliyuncs.com/";
+    public static final String AIL_DOMAIN="";
 
     public static String uploadImage(MultipartFile file) throws IOException {
         String originalName=file.getOriginalFilename();
@@ -24,9 +24,9 @@ public class UploadUtil {
              imgName=uuid;
         }
         //地域节点
-        String endpoint="https://oss-cn-shanghai.aliyuncs.com";
-        String accessKeyId="LTAI5tF7sAjbNAZGhqtdpKEH";
-        String accessKeySecret="LYHiUZQiVehbW6pynkzx3dMrl7eU8b";
+        String endpoint="";
+        String accessKeyId="";
+        String accessKeySecret="";
         OSS ossClient=new OSSClientBuilder().build(endpoint,accessKeyId,accessKeySecret);
         ossClient.putObject(
                 "treeholess",
